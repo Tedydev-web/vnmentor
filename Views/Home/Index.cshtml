@@ -1,0 +1,340 @@
+﻿@using vnmentor.Resources
+@{
+    ViewBag.Title = HomePageResource.WebAppTitle;
+}
+
+<style>
+    .gradient-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 30vh;
+        background: linear-gradient(to top, #FFFCF9, rgba(255, 255, 255, 0));
+    }
+
+
+    .overlay {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 2rem;
+        text-align: center;
+        color: white;
+        max-width: 70%;
+        margin: 0 auto;
+    }
+
+    .overlay h1 {
+        font-size: 3vw;
+        margin-bottom: 1rem;
+    }
+
+    .overlay .fs-16 {
+        font-size: 1.5vw;
+    }
+
+    #whyus {
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+
+    .three-box {
+        transition: height 0.3s ease-in-out, opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+        position: relative;
+        z-index: 1;
+        overflow: hidden;
+        aspect-ratio: 1/0.65;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .three-box:hover {
+        aspect-ratio: auto;
+        height: 28vh;
+        opacity: 1;
+        transform: scale(1.05) translateY(10px)
+    }
+
+    .three-box img {
+        max-width: 100%;
+        max-height: 100%;
+        border-radius: 8px;
+    }
+
+    .three-box img {
+        transform: translate(0, 50%);
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .three-box:hover img {
+        transform: translate(0, -1%);
+        transition: transform 0.3s ease-in-out;
+
+    }
+
+    .three-box .fs-22,
+    .three-box p {
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+    }
+
+    .three-box:hover .fs-22,
+    .three-box:hover p {
+        opacity: 1;
+    }
+
+    .scroll-section {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.9s, transform 0.9s;
+    }
+
+    .scroll-section.active {
+        opacity: 1;
+        transform: translateY(100px);
+    }
+</style>
+<section id="hero"
+    class="py-12 d-flex justify-content-center align-items-center"
+    style="position: relative; margin-bottom: 25px;">
+    <div class="carousel-inner">
+        <div class="carousel-item" style="min-height: 300px;">
+            <img class="position-relative w-100"
+                src="https://res.cloudinary.com/dfzhyunci/image/upload/v1720552666/EduVision/Slide/Slider_04.webp"
+                style="height: 600px; object-fit: cover;">
+            <div
+                class="carousel-caption d-flex align-items-center justify-content-center">
+                <div class="p-5"
+                    style="width: 100%; max-width: 900px;">
+                    <h5 class="text-white text-uppercase mb-md-3">khóa
+                        học trực tuyến</h5>
+                    <h1 class="display-3 text-white mb-md-4">Học ở
+                        ngay ngôi nhà của bạn</h1>
+                    <a href=""
+                        class="btn btn-primary py-md-2 px-md-4 font-weight-semi-bold mt-2">Tìm
+                        Hiểu Thêm</a>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-item active" style="min-height: 300px;">
+            <img class="position-relative w-100"
+                src="https://res.cloudinary.com/dfzhyunci/image/upload/v1720552666/EduVision/Slide/Slider_05.webp"
+                style="height: 600px; object-fit: cover;">
+            <div
+                class="carousel-caption d-flex align-items-center justify-content-center">
+                <div class="p-5"
+                    style="width: 100%; max-width: 900px;">
+                    <h5 class="text-white text-uppercase mb-md-3">khóa
+                        học trực tuyến</h5>
+                    <h1 class="display-3 text-white mb-md-4">Nền tảng
+                        học tập trực tuyến phù hợp nhất.</h1>
+                    <a href=""
+                        class="btn btn-primary py-md-2 px-md-4 font-weight-semi-bold mt-2">Tìm
+                        Hiểu Thêm</a>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-item" style="min-height: 300px;">
+            <img class="position-relative w-100"
+                src="https://res.cloudinary.com/dfzhyunci/image/upload/v1720552666/EduVision/Slide/Slider_06.webp"
+                style="height: 600px; object-fit: cover;">
+            <div
+                class="carousel-caption d-flex align-items-center justify-content-center">
+                <div class="p-5"
+                    style="width: 100%; max-width: 900px;">
+                    <h5 class="text-white text-uppercase mb-md-3">khóa
+                        học trực tuyến</h5>
+                    <h1 class="display-3 text-white mb-md-4">Phương
+                        pháp mới và cách học mới</h1>
+                    <a href=""
+                        class="btn btn-primary py-md-2 px-md-4 font-weight-semi-bold mt-2">Tìm
+                        Hiểu Thêm</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="gradient-overlay"></div>
+    <div class="overlay">
+        <h1 class="fs-48 fw600">@HomePageResource.HomeTitleOne</h1>
+        <div class="fs-16 pt-2">@HomePageResource.HomeDescription
+        </div>
+        <div class="pt-3">
+            <span class="nav-link p-0 m-0">
+                <a class="border-0 bg-secondarycolor hover-bg-primarycolor color-white hover-color-white btn-padding rounded hover-boxshadow fs-16 d-inline-block hover-moveup"
+                    href="@Url.Action("register","account")">@HomePageResource.SignUp</a>
+            </span>
+        </div>
+    </div>
+</section>
+
+<section id="whyus" class="pt-0 pb-12">
+    <div class="container">
+        <div class="row justify-content-center align-items-center text-center text-center">
+            <div class="col-lg-6">
+                <div class="fs-20 fw500 color-primarycolor">@HomePageResource.WhyUsTitle</div>
+                <div class="fs-32 fw600 text-capitalize lh-base">@HomePageResource.WhyUsDescription</div>
+            </div>
+        </div>
+        <div class="row justify-content-center align-items-center text-center mt-3">
+            <div class="col-lg-4">
+                <div class="p-5 bg-white shadow">
+                    <div class="py-5">
+                        <img src="~/Assets/whyus1.png" class="img-fluid" alt="">
+                        <div class="fs-22 fw600 text-capitalize lh-base pt-2">@HomePageResource.WhyUs1Title</div>
+                        <p>@HomePageResource.WhyUs1Description</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 mt-4 mt-lg-0">
+                <div class="p-5 bg-white shadow">
+                    <div class="py-5">
+                        <img src="~/Assets/whyus2.png" class="img-fluid" alt="">
+                        <div class="fs-22 fw600 text-capitalize lh-base pt-2">@HomePageResource.WhyUs2Title</div>
+                        <p>@HomePageResource.WhyUs2Description</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 mt-4 mt-lg-0">
+                <div class="p-5 bg-white shadow">
+                    <div class="py-5">
+                        <img src="~/Assets/whyus3.png" class="img-fluid" alt="">
+                        <div class="fs-22 fw600 text-capitalize lh-base pt-2">@HomePageResource.WhyUs3Title</div>
+                        <p>@HomePageResource.WhyUs3Description</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="features" class="pt-6 pb-12">
+    <div class="container">
+        <div class="row justify-content-center align-items-center text-center text-center mb-3">
+            <div class="col-lg-6">
+                <div class="fs-20 fw500 color-primarycolor">@HomePageResource.Features</div>
+                <div class="fs-32 fw600 text-capitalize lh-base">@HomePageResource.FeaturesDescription</div>
+            </div>
+        </div>
+        <div class="row justify-content-evenly align-items-stretch text-center g-4">
+            <div class="col-md-6 col-lg-3">
+                <div class="py-4 px-5 bg-white hover-bg-primarycolor hover-color-white shadow" data-bs-toggle="tooltip" data-bs-placement="top" title="@HomePageResource.Feature1Description">
+                    <div class="fs-17">@HomePageResource.Features1</div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="py-4 px-5 bg-white hover-bg-primarycolor hover-color-white shadow" data-bs-toggle="tooltip" data-bs-placement="top" title="@HomePageResource.Feature2Description">
+                    <div class="fs-17">@HomePageResource.Feature2</div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="py-4 px-5 bg-white hover-bg-primarycolor hover-color-white shadow" data-bs-toggle="tooltip" data-bs-placement="top" title="@HomePageResource.Feature3Description">
+                    <div class="fs-17">@HomePageResource.Feature3</div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="py-4 px-5 bg-white hover-bg-primarycolor hover-color-white shadow" data-bs-toggle="tooltip" data-bs-placement="top" title="@HomePageResource.Feature4Description">
+                    <div class="fs-17">@HomePageResource.Feature4</div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="py-4 px-5 bg-white hover-bg-primarycolor hover-color-white shadow" data-bs-toggle="tooltip" data-bs-placement="top" title="@HomePageResource.Feature5Description">
+                    <div class="fs-17">@HomePageResource.Feature5</div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="py-4 px-5 bg-white hover-bg-primarycolor hover-color-white shadow" data-bs-toggle="tooltip" data-bs-placement="top" title="@HomePageResource.Feature6Description">
+                    <div class="fs-17">@HomePageResource.Feature6</div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="py-4 px-5 bg-white hover-bg-primarycolor hover-color-white shadow" data-bs-toggle="tooltip" data-bs-placement="top" title="@HomePageResource.Feature7Description">
+                    <div class="fs-17">@HomePageResource.Feature7</div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="py-4 px-5 bg-white hover-bg-primarycolor hover-color-white shadow" data-bs-toggle="tooltip" data-bs-placement="top" title="@HomePageResource.Feature8Description">
+                    <div class="fs-17">@HomePageResource.Feature8</div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="py-4 px-5 bg-white hover-bg-primarycolor hover-color-white shadow" data-bs-toggle="tooltip" data-bs-placement="top" title="@HomePageResource.Feature9Description">
+                    <div class="fs-17">@HomePageResource.Feature9</div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="py-4 px-5 bg-white hover-bg-primarycolor hover-color-white shadow" data-bs-toggle="tooltip" data-bs-placement="top" title="@HomePageResource.Feature10Description">
+                    <div class="fs-17">@HomePageResource.Feature10</div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="py-4 px-5 bg-white hover-bg-primarycolor hover-color-white shadow" data-bs-toggle="tooltip" data-bs-placement="top" title="@HomePageResource.Feature11Description">
+                    <div class="fs-17">@HomePageResource.Feature11</div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="py-4 px-5 bg-white hover-bg-primarycolor hover-color-white shadow" data-bs-toggle="tooltip" data-bs-placement="top" title="@HomePageResource.Feature12Description">
+                    <div class="fs-17">@HomePageResource.Feature12</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="faq" class="pb-12">
+    <div class="container">
+        <div class="row justify-content-center align-items-center text-center text-center">
+            <div class="col-lg-6">
+                <div class="fs-20 fw500 color-primarycolor">@HomePageResource.FAQ</div>
+                <div class="fs-32 fw600 text-capitalize lh-base">@HomePageResource.FrequentlyAskedQuestions</div>
+            </div>
+        </div>
+        <div class="row justify-content-center align-items-center text-center pt-4">
+            <div class="col-lg-8">
+                <div class="accordion" id="accordionExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header color-white" id="headingOne">
+                            <button class="accordion-button plusminus-icon bg-img-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                @HomePageResource.FAQOneQuestion
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                            <div class="accordion-body text-start">
+                                @HomePageResource.FAQOneAnswer
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingTwo">
+                            <button class="accordion-button plusminus-icon collapsed bg-img-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                @HomePageResource.FAQTwoQuestion
+                            </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                            <div class="accordion-body text-start">
+                                @HomePageResource.FAQTwoAnswerPartOne
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingThree">
+                            <button class="accordion-button plusminus-icon collapsed bg-img-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                @HomePageResource.FAQThreeQuestion
+                            </button>
+                        </h2>
+                        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                            <div class="accordion-body text-start">
+                                @HomePageResource.FAQThreeAnswer
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pt-4">
+                    <a class="fs-18 color-secondarycolor hover-color-primarycolor d-inline-block hover-moveup" href="https://TedyDev.notion.site/FAQ-24c18b1c67e64af5b9b0f39f118641d2" target="_blank">@HomePageResource.ViewMore&nbsp;&nbsp;<i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

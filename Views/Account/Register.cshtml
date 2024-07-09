@@ -1,0 +1,152 @@
+﻿    @model vnmentor.Models.RegisterViewModel
+    @using vnmentor.Resources
+    @using vnmentor.CustomHelper
+    @{
+        ViewBag.Title = Resource.SignUp;
+    }
+    @await Html.PartialAsync("~/Views/Shared/_Notification.cshtml")
+
+    <div class="my-5"></div>
+    <div class="position-relative-w-100">
+        <div id="carouselExampleAutoplaying" class="carousel slide w-100 h-100 carousel-slide-w-100-h-100" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+            <img src="https://res.cloudinary.com/dfzhyunci/image/upload/v1713432334/vnmentor/Slider_01.png" class="d-fluid w-100 h-10 d-fluid-w-100-h-10" alt="Slide 1">
+            </div>
+            <div class="carousel-item">
+            <img src="https://res.cloudinary.com/dfzhyunci/image/upload/v1713432334/vnmentor/Slider_02.png" class="d-fluid w-100 h-10 d-fluid-w-100-h-10" alt="Slide 2">
+            </div>
+            <div class="carousel-item">
+            <img src="https://res.cloudinary.com/dfzhyunci/image/upload/v1713432334/vnmentor/Slider_03.png" class="d-fluid w-100 h-10 d-fluid-w-100-h-10" alt="Slide 3">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+        </div>
+    </div>
+<section class="py-10 px-3 px-sm-5 py-10-px-3-px-sm-5" style="width: 70vw;">
+        <div class="container" id="form">
+            <div class="wrapper">
+                  <div class="row justify-content-start align-items-start gx-0 gx-sm-5">
+<div class="col-lg-6 pt-5 pt-lg-0 order-1 order-lg-0 center-iframe-container">
+    <iframe id="lottie-iframe" src="https://lottie.host/embed/5e23352b-e4b0-49e8-94b0-6d0c8121da3c/b5YsZeSn0L.json" style="width: 100%; height: 500px;"></iframe>
+</div>
+
+
+                 <div class="col-lg-6 order-0 order-lg-1" style="border: solid #CDA666; border-radius: 30px; padding: 30px; background-color: #E6DACC;">
+                    <h1 class="fw600 pb-2 text-capitalizetitle-lg"><span class="color-primarycolor">@Resource.SignUp</span> @Resource.AnAccount</h1>
+                    <div class="pb-3">@Resource.FillYourDetailsToRegister</div>
+                    @if (Model.NoUserYet)
+                    {
+                        <div class="alert alert-info mb-3"><span class="fw600">Important Note: </span>We discovered that the system has no users as of now. Please take note that the first user to register now will automatically be assigned a System Admin role. We assume System Admin is the first user who has access to this system. Anyway, the user role can be changed after this.</div>
+                    }
+                    @using (Html.BeginForm("register", "account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, null, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @if (Model.NoUserYet == false)
+                        {
+                            <div class="mb-3 text-break">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.RoleName, htmlAttributes: new { @class = "form-label required fw600", @for = "RoleId" })
+                                    @CustomHelper.CustomDropDownList("RoleName", Model.RoleNameSelectList)
+                                    @Html.ValidationMessageFor(model => model.RoleName, "", new { @class = "invalid-message" })
+                                </div>
+                            </div>
+                        }
+                        <div class="mb-3 text-break">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "form-label required fw600" })
+                                @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "invalid-message" })
+                            </div>
+                        </div>
+                        <div class="mb-3 text-break">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "form-label required fw600" })
+                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "invalid-message" })
+                            </div>
+                        </div>
+                        <div class="mb-3 text-break">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "form-label required fw600" })
+                                <i class="fa-solid fa-circle-info text-info" data-bs-toggle="tooltip" data-bs-placement="right"
+                            title="@Resource.PasswordRequirementText"></i>
+                                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @type = "password" } })
+                                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "invalid-message" })
+                            </div>
+                        </div>
+                        <div class="mb-3 text-break">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.ConfirmPassword, htmlAttributes: new { @class = "form-label required fw600", @for = "ConfirmPassword" })
+                                @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control", @type = "password", @id = "ConfirmPassword" } })
+                                @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "invalid-message" })
+                            </div>
+                        </div>
+ <button type="submit" class="btn form-btn btn-primary hover-boxshadow hover-moveup">@Resource.Submit</button>
+                                                  @* <button id="submit" type="submit" class="btn form-btn btn-primary hover-boxshadow hover-moveup">
+                                  <span>@Resource.Submit</span>
+                                  <div class="top"></div>
+                                  <div class="left"></div>
+                                  <div class="bottom"></div>
+                                  <div class="right"></div>
+                              </button> *@
+                }
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
+    </section>
+                    <!-- Loading Overlay -->
+<div id="loadingOverlay" class="loading-overlay">
+    <iframe id="loadingIframe" class="loading-iframe" src="https://lottie.host/embed/ddcdfe20-2f0f-4ded-b5e4-e182ff717172/4Yo3YKuZbc.json" style="width: 100%; height: 500px;"></iframe>
+</div>
+@section Scripts {
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Lấy ra form và iframe overlay
+        const form = document.querySelector('form');
+        const loadingOverlay = document.getElementById('loadingOverlay');
+        let iframeLoaded = false; // Biến để theo dõi trạng thái của iframe
+
+        // Bắt sự kiện khi iframe load xong
+        document.getElementById('loadingIframe').onload = function() {
+            // Cập nhật trạng thái khi iframe load xong
+            iframeLoaded = true;
+        };
+
+        // Hàm để chuyển trang sau khi delay
+        function goToNextPage() {
+            setTimeout(function() {
+                form.submit(); // Thực hiện submit form sau 5 giây
+            }, 1000);
+        }
+
+        // Bắt sự kiện khi form submit
+        form.addEventListener('submit', function(event) {
+            // Ngăn chặn hành động mặc định của form
+            event.preventDefault();
+
+            // Hiển thị iframe overlay
+            loadingOverlay.style.display = 'block';
+
+            // Nếu iframe đã hoàn tất, thì chuyển trang
+            if (iframeLoaded) {
+                goToNextPage();
+            } else {
+                // Nếu chưa hoàn tất, thì đợi đến khi hoàn tất và chuyển trang sau đó
+                document.getElementById('loadingIframe').onload = function() {
+                    goToNextPage();
+                };
+            }
+        });
+    });
+</script>
+}
